@@ -1,8 +1,29 @@
 import os
 import shutil
 
+"""
+This script is designed to clean up and consolidate audio and transcription files from a nested directory structure into a single directory (dev_set_clean).
+The data is from the LibriSpeech dataset.
+The script performs the following operations:
+1. Removes any FLAC files that does not contain excatly 1 minimal pair from words_to_check (defined below)
+2. Removes any sub-subfolder that does not contain FLAC files.
+3. Removes any subfolder that becomes empty after its sub-subfolders are removed.
+3. Copies all remaining FLAC files from the sub-subfolders to the dev_set_clean directory.
+4. Collects and consolidates the relevant lines from each trans.txt file into a single trans.txt file in the dev_set_clean directory.
+"""
+
 # Path to the main directory containing subfolders
 main_directory_path = "/mnt/c/Users/Owner/OneDrive/Desktop/Technion/semester8/project_b/minimalParisLexicalStress/dataset/dev_set"
+
+# Minimal pairs to check
+words_to_check = [
+    'present', 'PRESENT', 'record', 'RECORD', 'conduct', 'CONDUCT', 'permit', 'PERMIT', 'conflict', 'CONFLICT',
+    'content', 'CONTENT', 'increase', 'INCREASE', 'decrease', 'DECREASE', 'object', 'OBJECT', 'convert', 'CONVERT',
+    'export', 'EXPORT', 'import', 'IMPORT', 'protest', 'PROTEST', 'suspect', 'SUSPECT', 'digest', 'DIGEST',
+    'reject', 'REJECT', 'perfect', 'PERFECT', 'insult', 'INSULT', 'progress', 'PROGRESS', 'refuse', 'REFUSE',
+    'extract', 'EXTRACT', 'rebel', 'REBEL', 'address', 'ADDRESS', 'subject', 'SUBJECT', 'project', 'PROJECT',
+    'contrast', 'CONTRAST', 'transfer', 'TRANSFER', 'entrance', 'ENTRANCE'
+]
 
 # Function to check if a directory contains any FLAC files
 def contains_flac_files(directory):
@@ -13,18 +34,6 @@ def contains_flac_files(directory):
 
 # Removing flac files with zero or more than 1 minimal pairs by lexical stress
 def rmv_unrelevant_flac_files():
-
-    # Define the list of words to check against
-    # List of minimal pairs by lexical stress
-    words_to_check = [
-        'present', 'PRESENT', 'record', 'RECORD', 'conduct', 'CONDUCT', 'permit', 'PERMIT', 'conflict', 'CONFLICT',
-        'content', 'CONTENT', 'increase', 'INCREASE', 'decrease', 'DECREASE', 'object', 'OBJECT', 'convert', 'CONVERT',
-        'export', 'EXPORT', 'import', 'IMPORT', 'protest', 'PROTEST', 'suspect', 'SUSPECT', 'digest', 'DIGEST',
-        'reject', 'REJECT', 'perfect', 'PERFECT', 'insult', 'INSULT', 'progress', 'PROGRESS', 'refuse', 'REFUSE',
-        'extract', 'EXTRACT', 'rebel', 'REBEL', 'address', 'ADDRESS', 'subject', 'SUBJECT', 'project', 'PROJECT',
-        'contrast', 'CONTRAST', 'transfer', 'TRANSFER', 'entrance', 'ENTRANCE'
-    ]
-
     # Iterate over each subfolder in the main directory
     for subfolder_name in os.listdir(main_directory_path):
         subfolder_path = os.path.join(main_directory_path, subfolder_name)
@@ -128,6 +137,6 @@ def rearrange():
                         copy_flac_and_trans(subfolder_name, subfolder_path, dev_set_clean_path, new_trans_file)
 
 if __name__ == '__main__':
-    # rmv_unrelevant_flac_files()
-    # rmv_empty_folders()
+    rmv_unrelevant_flac_files()
+    rmv_empty_folders()
     rearrange()
