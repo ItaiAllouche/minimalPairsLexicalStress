@@ -2,8 +2,8 @@ import os
 import shutil
 
 """
-This script is designed to clean up and consolidate audio and transcription files from a nested directory structure into a single directory (dev_set_clean).
-The data is from the LibriSpeech dataset.
+This script is designed to clean up and consolidate audio and transcription files from a nested directory structure (e.g. LibriSpeech dataset) into a single
+directory (dev_set_clean).
 The script performs the following operations:
 1. Removes any FLAC files that does not contain excatly 1 minimal pair from words_to_check (defined below)
 2. Removes any sub-subfolder that does not contain FLAC files.
