@@ -17,10 +17,10 @@ if the flag set to true:
 
 5. Collects and consolidates the relevant lines from each trans.txt file into a single trans.txt file in the output_dir_path.
 
-make sure you use pip install git+https://github.com/isaacOnline/whisper.git@extract-embeddings for installing whisper.
-This branch will be use in embaddings extraction as part of labling process.
+make sure you use pip install! pip install git+https://github.com/openai/whisper.git for installing whisper.
+This version will be used in order to get timestamps for clapping the FLAC file.
+make sure you use pip install jiwer as well.
 """
-
 
 import os
 import shutil
