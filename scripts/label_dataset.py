@@ -37,7 +37,6 @@ def get_label(sentence: str)->int:
                 return -1
     return -1
 
-
 def lebel_data(dataset_path: str):
   tagged_recordings = []
   for file_name in os.listdir(dataset_path):
@@ -59,7 +58,7 @@ def lebel_data(dataset_path: str):
                             tagged_recordings.append((curr_embedding ,curr_label))
 
   # extract tagged_recordings into pickle file                             
-  pickle_file_path = "/content/tagged_data.pkl"
+  pickle_file_path = f"/{dataset_path}/tagged_data.pkl"
   with open(pickle_file_path, 'wb') as file:
     pickle.dump(tagged_recordings, file)        
 
