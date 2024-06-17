@@ -11,7 +11,6 @@ This branch has an embaddings extraction feature which will be use in the lablin
 import nltk
 import whisper
 import os
-import nltk
 import pickle
 import numpy as np
 nltk.download('punkt')
@@ -65,7 +64,8 @@ def lebel_data(dataset_path: str):
                         parts = line.split(' ', 1)
                         if len(parts) > 1:
                             curr_label = get_label(parts[1])
-                            tagged_recordings.append((curr_embedding ,curr_label))
+                            if curr_label == 1 or curr_label == 0:
+                                tagged_recordings.append((curr_embedding ,curr_label))
 
   # extract tagged_recordings into pickle file                             
   pickle_file_path = f"/{dataset_path}/tagged_data.pkl"
