@@ -13,6 +13,7 @@ import whisper
 import os
 import nltk
 import pickle
+import numpy as np
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 from generate_dataset import words_to_check
@@ -44,7 +45,16 @@ def lebel_data(dataset_path: str):
 
         # Get embedding for current flac file
         curr_embedding = get_embedding(f"{dataset_path}/{file_name}")
-        # print(curr_embedding)
+
+       # Select the final layer's embeddings
+        curr_embedding = curr_embedding[:, -1, :, :]
+
+        # Remove the batch dimension
+        curr_embedding = curr_embedding.squeeze(0)
+
+        # Compute the mean across the sequence dimension
+        curr_embedding = np.mean(curr_embedding, axis=0)
+
         # Collect relevant trans.txt content
         text_file_path = f"{dataset_path}/trans.txt"
         if os.path.exists(text_file_path):
