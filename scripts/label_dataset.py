@@ -1,8 +1,10 @@
 """
 This script is designed to label the data.
-The script receives a sentence (text).
-Returns 1 if the minimal pair in the sentence is a verb, 0 if it is a noun, and -1 if the sentence does not contain a minimal pair from words_to_check
-or the word did not tagged as verb or noun.
+The script receives a sentence path to dir contains .FLAC files and text file that contains the transcript for each audio file (.FLAC).
+For each recording, the features will be the embeddings from either whisper or wav2vec2 (can be configured), and the label will be:
+1 - if the stress is at the start (e.g. PERfect)
+0 - if the stress is at the end (e.g. perFECT)
+-1 - if the audio does not include any word from (words_to_cehck) or if the minimal pair words is not either noun,verb or adjective.
 
 make sure you use pip install! pip install git+https://github.com/openai/whisper.git for installing whisper.
 This version will be used in order to get timestamps for getting embeddings corresponding to the minimal pair word.
@@ -14,7 +16,6 @@ This whipder branch includes an embaddings extraction feature.
 
 """
 
-import nltk
 import whisper
 import os
 import pickle
@@ -22,10 +23,9 @@ import numpy as np
 from transformers import Wav2Vec2Processor, Wav2Vec2Model
 import torch
 import librosa
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
 from generate_dataset import words_to_check
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+import spacy
 
 def remove_non_alphabetic(input_string: str)->str:
     # Initialize an empty string to store the result
@@ -116,13 +116,13 @@ def get_embedding_from_wav2vec2(audio_path: str)-> tuple:
     return embeddings_for_time_window
 
 def get_label(sentence: str)->int:
-    text = nltk.word_tokenize(sentence)
-    pos_tagged = nltk.pos_tag(text)
-    for curr_set in pos_tagged:
-        if curr_set[0] in words_to_check:
-            if curr_set[1] in ('VB', 'VBG', 'VBP', 'VBZ','VBD', 'VBN'):
+    nlp = spacy.load("en_core_web_sm") 
+    doc = nlp(sentence)
+    for token in doc:
+        if token.text in words_to_check:
+            if token.pos_ in ('VERB'):
                 return 1
-            elif curr_set[1] in ('NN', 'NNP'):
+            elif token.pos_ in ('NOUN', 'ADJ'):
                 return 0
             else:
                 return -1
