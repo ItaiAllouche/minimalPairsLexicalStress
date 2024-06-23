@@ -1,0 +1,10 @@
+git+https://github.com/openai/whisper.git
+os
+pickle
+numpy
+torch
+transformers
+shutil
+soundfile
+librosa
+import
