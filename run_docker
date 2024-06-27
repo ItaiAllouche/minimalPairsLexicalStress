@@ -1,0 +1,3 @@
+#!/bin/bash
+#docker run --gpus=7 -it -v ~/minimalPairsLexicalStress:/app itai_itay
+docker run --gpus=7 --ipc=host --name=itai_itay_container --network=host -d -it --rm -v "$PWD":"/app" itai_itay
