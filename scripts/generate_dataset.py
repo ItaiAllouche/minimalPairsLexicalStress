@@ -1,9 +1,8 @@
 """
 This script is designed to generate clear dataset from LibriSpeech dataset.
-Each element in the new dataset contains the fllowing:
-    1.FLAC file a recording that contains excatly
-      one minimal pair word for words_to_check (see blow).
-    2. label: 1 if the minimal pair word is verb, 0 in noun.
+Each new directory in the new dataset contains the fllowing:
+    1.FLAC file: a recording that contains excatly one minimal pair word for words_to_check (see below).
+    2. text file corresponds to the audio flile (transcript)
 The script receives a path to a directory downloaed from LibriSpeech, bool flag and an output_dir_path and does the following:
 1. Removes any FLAC files that does not contain excatly 1 minimal pair from words_to_check.
 2. Removes any sub-subfolder that does not contain FLAC files.
@@ -89,6 +88,34 @@ def generate_dataset(current_dir: str, output_dir_path: str):
     os.makedirs(output_dir_path, exist_ok=True)
     with open(os.path.join(output_dir_path, "trans.txt"), "w") as new_trans_file:
         rearrange(current_dir=current_dir, output_dir_path=output_dir_path,new_trans_file=new_trans_file)
+
+        # Read the lines from the text file and create a dictionary
+        lines_dict = {}
+        for line in new_trans_file:
+            parts = line.strip().split(' ', 1)
+            if len(parts) == 2:
+                lines_dict[parts[0]] = parts[1]
+
+    # Iterate over each FLAC file in the directory
+    for file_name in os.listdir(output_dir_path):
+        if file_name.endswith('.flac'):
+            base_name = os.path.splitext(file_name)[0]
+            if base_name in lines_dict:
+                # Create a new directory for the FLAC file
+                new_dir = os.path.join(output_dir_path, base_name)
+                os.makedirs(new_dir, exist_ok=True)
+                
+                # Move the FLAC file into the new directory
+                original_flac_path = os.path.join(output_dir_path, file_name)
+                new_flac_path = os.path.join(new_dir, file_name)
+                shutil.move(original_flac_path, new_flac_path)
+                
+                # Create a new text file with the corresponding line
+                new_text_file_path = os.path.join(new_dir, f'{base_name}.txt')
+                with open(new_text_file_path, 'w') as new_text_file:
+                    new_text_file.write(lines_dict[base_name])
+
+    print("Operation completed successfully.")        
 
 if __name__ == '__main__':
     # Receive input from user
