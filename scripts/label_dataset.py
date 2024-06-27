@@ -6,17 +6,14 @@ For each recording, the features will be the embeddings from either whisper or w
 0 - if the stress is at the end (e.g. perFECT)
 -1 - if the audio does not include any word from (words_to_cehck) or if the minimal pair words is not either noun,verb or adjective.
 
-make sure you use pip install! pip install git+https://github.com/openai/whisper.git for installing whisper.
-This version will be used in order to get timestamps for getting embeddings corresponding to the minimal pair word.
-make sure you use pip install jiwer as well.
-
 Notice: if you want to use whisper model for embeddings extraction, you need to use pip install git+https://github.com/isaacOnline/whisper.git@extract-embeddings
 for installing whisper.
 This whipder branch includes an embaddings extraction feature.
 
 """
 
-import whisper
+# import whisper
+import textgrid as tg
 import os
 import pickle
 import numpy as np
@@ -39,18 +36,29 @@ def remove_non_alphabetic(input_string: str)->str:
             result += char
     return result
 
-def get_start_end_times(audio_path: str)-> tuple:
-    model = whisper.load_model("base")
-    transcript = model.transcribe(word_timestamps=True, audio=file)
-    for segment in transcript["segments"]:
-        for word in segment["words"]:
-          clean_word = remove_non_alphabetic(word["word"])
-          if clean_word in words_to_check:
-            new_start = float(word['start'])
-            new_end = float(word['end'])
-            print(f"|word:{clean_word}|start:{new_start}|end:{new_end}|")
+def read_textgrid_data(TextGrid_path: str)->list:
+
+    textgrid_file = tg.TextGrid.fromFile(TextGrid_path)
+    intervals = []
+
+    for interval in textgrid_file[0]: #0 for words, 1 for phones
+
+        xmin = interval.minTime
+        xmax = interval.maxTime
+        text = interval.mark
+
+        intervals.append((xmin, xmax, text))
+
+    return intervals
+
+def get_start_end_times(TextGrid_path: str)-> tuple:
+    data = read_textgrid_data(TextGrid_path)
+    for elem in data:
+        if elem[2] in words_to_check:
+            new_start = float(elem[0])
+            new_end = float(elem[1])
+            print(f"|word:{elem[2]}|start:{new_start}|end:{new_end}|")
             return new_start, new_end
-            break
     return -1, -1
 
 def get_embedding_from_whisper(audio_path: str)->tuple:
@@ -137,7 +145,7 @@ def lebel_data(dataset_path: str, use_whisper_embedding = False):
         if(use_whisper_embedding):
             curr_embedding = get_embedding_from_whisper(f"{dataset_path}/{file_name}")
         else:
-            curr_embedding = get_embedding_from_whisper(f"{dataset_path}/{file_name}")
+            curr_embedding = get_embedding_from_wav2vec2(f"{dataset_path}/{file_name}")
 
         # Collect relevant trans.txt content
         text_file_path = f"{dataset_path}/trans.txt"
