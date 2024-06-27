@@ -1,7 +1,7 @@
 #!/bin/bash
 # This script is desinged to use the montreal-forced-aligner package in order to extract time-stamps for the audio files.
 # running this script, will add .TextGrid file to each dir that contains audio files and the corresponding .txt file (transcript).
-# time stamps will be extracted using the TextGrid file.
+# time stamps will get extracted using label_dataset.py script by using the TextGrid file.
 
 cd ../datasets/train_100_clean || { echo "Error: ../datasets directory not found"; exit 1; }
 
