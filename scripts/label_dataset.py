@@ -1,6 +1,9 @@
 """
 This script is designed to label the data.
-The script receives a sentence path to dir contains .FLAC files and text file that contains the transcript for each audio file (.FLAC).
+The script receives path to dir that contains:
+1. .FLAC files (audio) 
+2. .txt file - contains the transcript the audio file (.FLAC).
+3. .TextGrid file- contains relevant data for time-stamps extraction.
 For each recording, the features will be the embeddings from either whisper or wav2vec2 (can be configured), and the label will be:
 1 - if the stress is at the start (e.g. PERfect)
 0 - if the stress is at the end (e.g. perFECT)
@@ -51,7 +54,7 @@ def read_textgrid_data(TextGrid_path: str)->list:
 
     return intervals
 
-def get_start_end_times(TextGrid_path: str)-> tuple:
+def get_time_stamps(TextGrid_path: str)-> tuple:
     data = read_textgrid_data(TextGrid_path)
     for elem in data:
         if elem[2] in words_to_check:
@@ -61,23 +64,24 @@ def get_start_end_times(TextGrid_path: str)-> tuple:
             return new_start, new_end
     return -1, -1
 
-def get_embedding_from_whisper(audio_path: str)->tuple:
+# Complete if neccesery, currently not supported.
+def get_embedding_from_whisper(dir_path: str, dir_name: str)->tuple:
     model = whisper.load_model("base")
 
     # Transcribe audio to get transcript with word timestamps
     transcript = model.transcribe(audio=audio_path)
     return transcript["segments"][0]['encoder_embeddings']
 
-def get_embedding_from_wav2vec2(audio_path: str)-> tuple:
+def get_embedding_from_wav2vec2(dir_path: str, dir_name: str)-> tuple:
     # Load pre-trained processor and model
     processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
     model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h")
 
     # Load the audio file
-    audio_file = audio_path
+    audio_file = f'{dir_path}/{dir_name}.flac'
     audio, sample_rate = librosa.load(audio_file, sr=16000)
 
-    start_time, end_time = get_start_end_times('/content/19-227-0013.flac')
+    start_time, end_time = get_time_stamps(f'{dir_path}/{dir_name}.TextGrid')
     strach = 0.28 # in [sec]
     end_time = end_time + strach if ((end_time+strach)*sample_rate <= len(audio))\
                                  else end_time
@@ -123,7 +127,7 @@ def get_embedding_from_wav2vec2(audio_path: str)-> tuple:
     # plot_embeddings(embeddings_for_time_window)
     return embeddings_for_time_window
 
-def get_label(sentence: str)->int:
+def get_label(sentence: str)-> int:
     nlp = spacy.load("en_core_web_sm") 
     doc = nlp(sentence)
     for token in doc:
@@ -138,27 +142,27 @@ def get_label(sentence: str)->int:
 
 def lebel_data(dataset_path: str, use_whisper_embedding = False):
   tagged_recordings = []
-  for file_name in os.listdir(dataset_path):
-    if file_name.endswith(".flac"):
+  for dir_name in os.listdir(dataset_path):
+    # Get embedding for current dir
+    if(use_whisper_embedding):
+        curr_embedding = get_embedding_from_whisper(f'{dataset_path}/{dir_name}')
+    else:
+        curr_embedding = get_embedding_from_wav2vec2(f'{dataset_path}/{dir_name}', dir_name)
 
-        # Get embedding for current flac file
-        if(use_whisper_embedding):
-            curr_embedding = get_embedding_from_whisper(f"{dataset_path}/{file_name}")
-        else:
-            curr_embedding = get_embedding_from_wav2vec2(f"{dataset_path}/{file_name}")
+    for file_name in os.listdir(f"{dataset_path}/{dir_name}"):
+        if file_name.endswith('.txt'): 
+            # Collect relevant trans.txt content
+            text_file_path = f"{dataset_path}/{file_name}"
+            if os.path.exists(text_file_path):
+                with open(text_file_path, "r") as trans_file:
 
-        # Collect relevant trans.txt content
-        text_file_path = f"{dataset_path}/trans.txt"
-        if os.path.exists(text_file_path):
-            with open(text_file_path, "r") as trans_file:
-                # Add relevant lines to new_trans_file
-                for line in trans_file:
-                    if file_name[:-5] in line:
-                        parts = line.split(' ', 1)
-                        if len(parts) > 1:
-                            curr_label = get_label(parts[1])
-                            if curr_label == 1 or curr_label == 0:
-                                tagged_recordings.append((curr_embedding ,curr_label))
+                    for line in trans_file:
+                        if file_name[:-5] in line:
+                            parts = line.split(' ', 1)
+                            if len(parts) > 1:
+                                curr_label = get_label(parts[1])
+                                if curr_label == 1 or curr_label == 0:
+                                    tagged_recordings.append((curr_embedding ,curr_label))
 
   # extract tagged_recordings into pickle file                             
   pickle_file_path = f"/{dataset_path}/tagged_data.pkl"
@@ -169,4 +173,3 @@ if __name__ == '__main__':
     # Receive input from user
     dataset_path = input("Enter path for dataset: ")
     lebel_data(dataset_path)
-
