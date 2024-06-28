@@ -3,6 +3,17 @@
 # running this script, will add .TextGrid file to each dir that contains audio files and the corresponding .txt file (transcript).
 # time stamps will get extracted using label_dataset.py script by using the TextGrid file.
 
+# install and activate conda
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+source ~/miniconda3/bin/activate
+conda init
+source ~/.bashrc
+conda create -n aligner -c conda-forge montreal-forced-aligner
+conda activate aligner
+mfa model download acoustic english_us_arpa
+mfa model download dictionary english_us_arpa
+
 cd ../datasets/train_100_clean || { echo "Error: ../datasets directory not found"; exit 1; }
 
 GPU_DEVICE_ID=7
@@ -23,3 +34,6 @@ for dir in */; do
         fi
     fi
 done
+
+conda deactivate
+conda deactivate
