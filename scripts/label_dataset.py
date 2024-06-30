@@ -1,6 +1,6 @@
 """
 This script is designed to label the data.
-The script receives path to dir that contains:
+The script receives path to dir that contains dirs, each dir contains:
 1. .FLAC files (audio) 
 2. .txt file - contains the transcript the audio file (.FLAC).
 3. .TextGrid file- contains relevant data for time-stamps extraction.
@@ -24,8 +24,10 @@ from transformers import Wav2Vec2Processor, Wav2Vec2Model
 import torch
 import librosa
 from generate_dataset import words_to_check
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import spacy
+import subprocess
+import torch.nn.functional as F
 
 def remove_non_alphabetic(input_string: str)->str:
     # Initialize an empty string to store the result
@@ -54,15 +56,26 @@ def read_textgrid_data(TextGrid_path: str)->list:
 
     return intervals
 
+# TODO: check if stach is necessery
 def get_time_stamps(TextGrid_path: str)-> tuple:
-    data = read_textgrid_data(TextGrid_path)
-    for elem in data:
-        if elem[2] in words_to_check:
-            new_start = float(elem[0])
-            new_end = float(elem[1])
-            print(f"|word:{elem[2]}|start:{new_start}|end:{new_end}|")
-            return new_start, new_end
+    sentence_time_stamps = read_textgrid_data(TextGrid_path)
+    for segment in sentence_time_stamps:
+        if segment[2] in words_to_check:
+            return float(segment[0]), float(segment[1])
     return -1, -1
+
+# reshape embeddings size to fixed size using bicubic interpolation. 
+def fix_embedding_size(emb: tuple, fix_size: tuple)->tuple:
+    if emb.dim() != 3 or emb.size(0) != 1:
+        raise ValueError("Input data must have shape (1, height, width).")
+
+    # Convert new shape to match the expected input for interpolate
+    new_height, new_width = fix_size[1], fix_size[2]
+    
+    # Perform the interpolation using torch.nn.functional.interpolate
+    reshaped_data = F.interpolate(emb.unsqueeze(0), size=(new_height, new_width), mode='bicubic', align_corners=False).squeeze(0)
+    
+    return reshaped_data
 
 # Complete if neccesery, currently not supported.
 def get_embedding_from_whisper(dir_path: str, dir_name: str)->tuple:
@@ -72,11 +85,7 @@ def get_embedding_from_whisper(dir_path: str, dir_name: str)->tuple:
     transcript = model.transcribe(audio=audio_path)
     return transcript["segments"][0]['encoder_embeddings']
 
-def get_embedding_from_wav2vec2(dir_path: str, dir_name: str)-> tuple:
-    # Load pre-trained processor and model
-    processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
-    model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h")
-
+def get_embedding_from_wav2vec2(dir_path: str, dir_name: str, processor, model, plot = False)-> tuple:
     # Load the audio file
     audio_file = f'{dir_path}/{dir_name}.flac'
     audio, sample_rate = librosa.load(audio_file, sr=16000)
@@ -113,61 +122,80 @@ def get_embedding_from_wav2vec2(dir_path: str, dir_name: str)-> tuple:
     embeddings_for_time_window = last_hidden_state[:, start_vector:end_vector, :]
 
     # Optionally, plot the embeddings for visualization
-    # def plot_embeddings(embeddings):
-    #     fig, ax = plt.subplots(figsize=(12, 8))
-    #     img = ax.imshow(embeddings.squeeze().T, aspect='auto', origin='lower')
-    #     ax.set_title("Embeddings from [2, 3] seconds of audio")
-    #     ax.set_xlabel("Time steps")
-    #     ax.set_ylabel("Feature dimensions")
-    #     fig.colorbar(img, ax=ax, shrink=0.6, location="bottom")
-    #     fig.tight_layout()
-    #     plt.show()
+    def plot(em):
+        fig, ax = plt.subplots(1,1, figsize=(14, 8))
 
-    # # Plot the embeddings
-    # plot_embeddings(embeddings_for_time_window)
+        # Plot all embedding
+        img = ax.imshow(em.squeeze().T, aspect='auto', origin='lower', vmax=3, vmin=-3)
+        ax.set_title(f"Embeddings")
+        ax.set_ylabel("Feature dimensions")
+        fig.colorbar(img, ax=ax, shrink=0.6, location="bottom")
+
+        fig.tight_layout()
+        plt.show()
+
+    if(plot):
+        # Plot the embeddings
+        plot(embeddings_for_time_window)
+
     return embeddings_for_time_window
 
-def get_label(sentence: str)-> int:
-    nlp = spacy.load("en_core_web_sm") 
-    doc = nlp(sentence)
-    for token in doc:
-        if token.text in words_to_check:
-            if token.pos_ in ('VERB'):
-                return 1
-            elif token.pos_ in ('NOUN', 'ADJ'):
-                return 0
-            else:
-                return -1
+def get_label(txt_path: str, nlp)-> int:
+    if os.path.exists(txt_path):
+        with open(txt_path, "r") as trans_file:
+            for line in trans_file:
+                doc = nlp(line)
+                for token in doc:
+                    if token.text in words_to_check:
+                        if token.pos_ in ('VERB'):
+                            #word_count[token.text] = (word_count[token.text][0] + 1, word_count[token.text][1], word_count[token.text][2])
+                            return 1
+                        elif token.pos_ in ('NOUN', 'ADJ', 'PROPN'):
+                            #word_count[token.text] = (word_count[token.text][0], word_count[token.text][1] + 1, word_count[token.text][2])
+                            return 0
+                        else:
+                            return -1
     return -1
 
 def lebel_data(dataset_path: str, use_whisper_embedding = False):
-  tagged_recordings = []
-  for dir_name in os.listdir(dataset_path):
-    # Get embedding for current dir
-    if(use_whisper_embedding):
-        curr_embedding = get_embedding_from_whisper(f'{dataset_path}/{dir_name}')
-    else:
-        curr_embedding = get_embedding_from_wav2vec2(f'{dataset_path}/{dir_name}', dir_name)
+    # two dataset for testing comparation.
+    # tagged_fixed_embeddings contains embeddings of equal shape.
+    tagged_embeddings = []
+    tagged_fixed_embeddings = []
 
-    for file_name in os.listdir(f"{dataset_path}/{dir_name}"):
-        if file_name.endswith('.txt'): 
-            # Collect relevant trans.txt content
-            text_file_path = f"{dataset_path}/{file_name}"
-            if os.path.exists(text_file_path):
-                with open(text_file_path, "r") as trans_file:
+    # loading wav2vec2 model the its processor if necessery.
+    if use_whisper_embedding is False:
+        processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
+        model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h")
+    
+    # download and load english model for spacy.
+    # here we use a small model.
+    spacy.require_gpu()
+    subprocess.run('python -m spacy download en_core_web_sm', shell=True, check=True)
+    nlp = spacy.load("en_core_web_sm")
 
-                    for line in trans_file:
-                        if file_name[:-5] in line:
-                            parts = line.split(' ', 1)
-                            if len(parts) > 1:
-                                curr_label = get_label(parts[1])
-                                if curr_label == 1 or curr_label == 0:
-                                    tagged_recordings.append((curr_embedding ,curr_label))
+    for dir_name in os.listdir(dataset_path):
+        # Get embedding for current dir
+        if use_whisper_embedding:
+            curr_embedding = get_embedding_from_whisper(f'{dataset_path}/{dir_name}')
+        else:
+            # Load pre-trained processor and model
+            curr_embedding = get_embedding_from_wav2vec2(f'{dataset_path}/{dir_name}', dir_name, processor, model)
 
-  # extract tagged_recordings into pickle file                             
-  pickle_file_path = f"/{dataset_path}/tagged_data.pkl"
-  with open(pickle_file_path, 'wb') as file:
-    pickle.dump(tagged_recordings, file)        
+        curr_label = get_label(f'{dataset_path}/{dir_name}/{dir_name}.txt', nlp)
+        if curr_label in (0, 1):
+            tagged_embeddings.append((curr_embedding ,curr_label))
+            tagged_fixed_embeddings.append((fix_embedding_size(curr_embedding) ,curr_label))
+
+    # extract tagged_recordings into pickle file                             
+    pickle_file_path = f"/{dataset_path}/tagged_embeddings.pkl"
+    with open(pickle_file_path, 'wb') as file:
+        pickle.dump(tagged_embeddings, file)
+        # extract tagged_recordings into pickle file   
+                          
+    pickle_file_path = f"/{dataset_path}/tagged_fixed_embeddings.pkl"
+    with open(pickle_file_path, 'wb') as file:
+        pickle.dump(tagged_fixed_embeddings, file)   
 
 if __name__ == '__main__':
     # Receive input from user
