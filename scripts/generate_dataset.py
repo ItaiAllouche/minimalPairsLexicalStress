@@ -13,17 +13,40 @@ The script receives a path to a directory downloaed from LibriSpeech, bool flag 
 """
 import os
 import shutil
-import soundfile as sf
+# import soundfile as sf
 
 # Minimal pairs to check
 words_to_check = [
-    'present', 'PRESENT', 'record', 'RECORD', 'conduct', 'CONDUCT', 'permit', 'PERMIT', 'conflict', 'CONFLICT',
-    'content', 'CONTENT', 'increase', 'INCREASE', 'decrease', 'DECREASE', 'object', 'OBJECT', 'convert', 'CONVERT',
-    'export', 'EXPORT', 'import', 'IMPORT', 'protest', 'PROTEST', 'suspect', 'SUSPECT', 'digest', 'DIGEST',
-    'reject', 'REJECT', 'perfect', 'PERFECT', 'insult', 'INSULT', 'progress', 'PROGRESS', 'refuse', 'REFUSE',
-    'extract', 'EXTRACT', 'rebel', 'REBEL', 'address', 'ADDRESS', 'subject', 'SUBJECT', 'project', 'PROJECT',
-    'contrast', 'CONTRAST', 'transfer', 'TRANSFER', 'entrance', 'ENTRANCE'
+    'present', 'presents', 'PRESENT', 'PRESENTS', 
+    'record', 'records', 'RECORD', 'RECORDS', 
+    'conduct', 'conducts', 'CONDUCT', 'CONDUCTS', 
+    'permit', 'permits', 'PERMIT', 'PERMITS', 
+    'conflict', 'conflicts', 'CONFLICT', 'CONFLICTS', 
+    'content', 'contents', 'CONTENT', 'CONTENTS', 
+    'increase', 'increases', 'INCREASE', 'INCREASES', 
+    'decrease', 'decreases', 'DECREASE', 'DECREASES', 
+    'object', 'objects', 'OBJECT', 'OBJECTS', 
+    'convert', 'converts', 'CONVERT', 'CONVERTS', 
+    'export', 'exports', 'EXPORT', 'EXPORTS', 
+    'import', 'imports', 'IMPORT', 'IMPORTS', 
+    'protest', 'protests', 'PROTEST', 'PROTESTS', 
+    'suspect', 'suspects', 'SUSPECT', 'SUSPECTS', 
+    'digest', 'digests', 'DIGEST', 'DIGESTS', 
+    'reject', 'rejects', 'REJECT', 'REJECTS', 
+    'perfect', 'perfects', 'PERFECT', 'PERFECTS', 
+    'insult', 'insults', 'INSULT', 'INSULTS', 
+    'progress', 'progresses', 'PROGRESS', 'PROGRESSES', 
+    'refuse', 'refuses', 'REFUSE', 'REFUSES', 
+    'extract', 'extracts', 'EXTRACT', 'EXTRACTS', 
+    'rebel', 'rebels', 'REBEL', 'REBELS', 
+    'address', 'addresses', 'ADDRESS', 'ADDRESSES', 
+    'subject', 'subjects', 'SUBJECT', 'SUBJECTS', 
+    'project', 'projects', 'PROJECT', 'PROJECTS', 
+    'contrast', 'contrasts', 'CONTRAST', 'CONTRASTS', 
+    'transfer', 'transfers', 'TRANSFER', 'TRANSFERS', 
+    'entrance', 'entrances', 'ENTRANCE', 'ENTRANCES'
 ]
+
 # Function to check if a directory contains any FLAC files
 def contains_flac_files(directory: str)->bool:
     for file_name in os.listdir(directory):
@@ -85,7 +108,7 @@ def rearrange(current_dir: str, output_dir_path:str, new_trans_file):
                                                 new_trans_file.writelines(line)
 
 def generate_dataset(current_dir: str, output_dir_path: str):
-    os.makedirs(output_dir_path, exist_ok=True)
+    #os.makedirs(output_dir_path, exist_ok=True)
     with open(os.path.join(output_dir_path, "trans.txt"), "w") as new_trans_file:
         rearrange(current_dir=current_dir, output_dir_path=output_dir_path,new_trans_file=new_trans_file)
 

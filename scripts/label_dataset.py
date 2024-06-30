@@ -163,6 +163,11 @@ def lebel_data(dataset_path: str, use_whisper_embedding = False):
     tagged_embeddings = []
     tagged_fixed_embeddings = []
 
+    # embeddings fixed size, min value and max value
+    fix_size = (1,40,768)
+    vmin = -4
+    vmax = 4
+
     # loading wav2vec2 model the its processor if necessery.
     if use_whisper_embedding is False:
         processor = Wav2Vec2Processor.from_pretrained("facebook/wav2vec2-base-960h")
@@ -179,13 +184,15 @@ def lebel_data(dataset_path: str, use_whisper_embedding = False):
         if use_whisper_embedding:
             curr_embedding = get_embedding_from_whisper(f'{dataset_path}/{dir_name}')
         else:
-            # Load pre-trained processor and model
             curr_embedding = get_embedding_from_wav2vec2(f'{dataset_path}/{dir_name}', dir_name, processor, model)
+            # clip embedding values to be between [vmin,vmax]
+            curr_embedding = curr_embedding.clamp(min=vmin, max=vmax)
+            
 
         curr_label = get_label(f'{dataset_path}/{dir_name}/{dir_name}.txt', nlp)
         if curr_label in (0, 1):
             tagged_embeddings.append((curr_embedding ,curr_label))
-            tagged_fixed_embeddings.append((fix_embedding_size(curr_embedding) ,curr_label))
+            tagged_fixed_embeddings.append((fix_embedding_size(curr_embedding, fix_size).clamp(min=vmin, max=vmax) ,curr_label))
 
     # extract tagged_recordings into pickle file                             
     pickle_file_path = f"/{dataset_path}/tagged_embeddings.pkl"
