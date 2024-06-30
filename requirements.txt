@@ -1,8 +1,10 @@
 #git+https://github.com/openai/whisper.git
-#pickle
 numpy
 #torch
 transformers
 textgrid
 soundfile
 librosa
+spacy
+spicy
+
