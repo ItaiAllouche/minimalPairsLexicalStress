@@ -123,16 +123,17 @@ def get_embedding_from_wav2vec2(dir_path: str, dir_name: str, processor, model, 
 
     # Optionally, plot the embeddings for visualization
     def plot(em):
-        fig, ax = plt.subplots(1,1, figsize=(14, 8))
+        pass
+        # fig, ax = plt.subplots(1,1, figsize=(14, 8))
 
-        # Plot all embedding
-        img = ax.imshow(em.squeeze().T, aspect='auto', origin='lower', vmax=3, vmin=-3)
-        ax.set_title(f"Embeddings")
-        ax.set_ylabel("Feature dimensions")
-        fig.colorbar(img, ax=ax, shrink=0.6, location="bottom")
+        # # Plot all embedding
+        # img = ax.imshow(em.squeeze().T, aspect='auto', origin='lower', vmax=3, vmin=-3)
+        # ax.set_title(f"Embeddings")
+        # ax.set_ylabel("Feature dimensions")
+        # fig.colorbar(img, ax=ax, shrink=0.6, location="bottom")
 
-        fig.tight_layout()
-        plt.show()
+        # fig.tight_layout()
+        # plt.show()
 
     if(plot):
         # Plot the embeddings
@@ -164,7 +165,7 @@ def lebel_data(dataset_path: str, use_whisper_embedding = False):
     tagged_fixed_embeddings = []
 
     # embeddings fixed size, min value and max value
-    fix_size = (1,40,768)
+    fix_size = (1,57,768)
     vmin = -4
     vmax = 4
 
@@ -176,31 +177,31 @@ def lebel_data(dataset_path: str, use_whisper_embedding = False):
     # download and load english model for spacy.
     # here we use a small model.
     spacy.require_gpu()
-    subprocess.run('python -m spacy download en_core_web_sm', shell=True, check=True)
+    # subprocess.run('python -m spacy download en_core_web_sm', shell=True, check=True)
     nlp = spacy.load("en_core_web_sm")
 
     for dir_name in os.listdir(dataset_path):
-        # Get embedding for current dir
-        if use_whisper_embedding:
-            curr_embedding = get_embedding_from_whisper(f'{dataset_path}/{dir_name}')
-        else:
-            curr_embedding = get_embedding_from_wav2vec2(f'{dataset_path}/{dir_name}', dir_name, processor, model)
-            # clip embedding values to be between [vmin,vmax]
-            curr_embedding = curr_embedding.clamp(min=vmin, max=vmax)
+        if not dir_name.endswith(".txt"):
+            # Get embedding for current dir
+            if use_whisper_embedding:
+                curr_embedding = get_embedding_from_whisper(f'{dataset_path}/{dir_name}')
+            else:
+                curr_embedding = get_embedding_from_wav2vec2(f'{dataset_path}/{dir_name}', dir_name, processor, model)
+                # clip embedding values to be between [vmin,vmax]
+                curr_embedding = curr_embedding.clamp(min=vmin, max=vmax)
             
-
-        curr_label = get_label(f'{dataset_path}/{dir_name}/{dir_name}.txt', nlp)
-        if curr_label in (0, 1):
-            tagged_embeddings.append((curr_embedding ,curr_label))
-            tagged_fixed_embeddings.append((fix_embedding_size(curr_embedding, fix_size).clamp(min=vmin, max=vmax) ,curr_label))
+            curr_label = get_label(f'{dataset_path}/{dir_name}/{dir_name}.txt', nlp)
+            if curr_label in (0, 1):
+                tagged_embeddings.append((curr_embedding ,curr_label))
+                tagged_fixed_embeddings.append((fix_embedding_size(curr_embedding, fix_size).clamp(min=vmin, max=vmax) ,curr_label))
 
     # extract tagged_recordings into pickle file                             
-    pickle_file_path = f"/{dataset_path}/tagged_embeddings.pkl"
+    pickle_file_path = f"./tagged_embeddings.pkl"
     with open(pickle_file_path, 'wb') as file:
         pickle.dump(tagged_embeddings, file)
         # extract tagged_recordings into pickle file   
                           
-    pickle_file_path = f"/{dataset_path}/tagged_fixed_embeddings.pkl"
+    pickle_file_path = f"./tagged_fixed_embeddings.pkl"
     with open(pickle_file_path, 'wb') as file:
         pickle.dump(tagged_fixed_embeddings, file)   
 
