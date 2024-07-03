@@ -19,6 +19,8 @@ RUN apt update -y
 # Install dependencies
 RUN pip install --no-cache-dir -r /root/requirements.txt
 
+RUN python -m spacy download en_core_web_sm
+
 # Create a directory for the app
 WORKDIR /app
 
