@@ -26,7 +26,7 @@ X_fixed_train, X_fixed_test, y_fixed_train, y_fixed_test = train_test_split(X_fi
 
 # create and train the SVM model
 # model = SVC()
-model_fixed = SVC()
+model_fixed = SVC(kernel='rbf', C=1.0, gamma='scale', class_weight='balanced', random_state=42)
 # model.fit(X_train, y_train)
 model_fixed.fit(X_fixed_train, y_fixed_train)
 
@@ -39,3 +39,32 @@ y_fixed_pred = model_fixed.predict(X_fixed_test)
 accuracy_fixed = accuracy_score(y_fixed_test, y_fixed_pred)
 # print(f"Accuracy: {accuracy * 100:.2f}%")
 print(f"Accuracy fixed: {accuracy_fixed * 100:.2f}%")
+
+
+# Finding optimal hyper-param for SVM
+# param_grid = {
+#     'C': [0.1, 1, 10, 100],
+#     'gamma': ['scale', 'auto'],
+#     'kernel': ['linear', 'rbf', 'poly'],
+#     'class_weight': [None, 'balanced']
+# }
+
+# # Initialize the GridSearchCV object
+# grid_search = GridSearchCV(SVC(), param_grid, cv=5, scoring='accuracy')
+
+# # Fit the grid search to the data
+# grid_search.fit(X_train, y_train)
+
+# # Get the best parameters
+# best_params = grid_search.best_params_
+# print(f"Best parameters: {best_params}")
+
+# # Train the final model with the best parameters
+# best_model = grid_search.best_estimator_
+
+# # Make predictions on the test set
+# y_pred = best_model.predict(X_test)
+
+# # Evaluate the model
+# accuracy = accuracy_score(y_test, y_pred)
+# print(f"Accuracy: {accuracy * 100:.2f}%")
