@@ -14,12 +14,17 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY requirements.txt /root/requirements.txt
 
 #RUN apt update && apt install -y git
-RUN apt update -y 
+RUN apt update -y
+
+#RUN nvtop for gpu monitoring
+RUN apt install nvtop 
 
 # Install dependencies
 RUN pip install --no-cache-dir -r /root/requirements.txt
 
 RUN python -m spacy download en_core_web_sm
+
+RUN apt install screen -y
 
 # Create a directory for the app
 WORKDIR /app

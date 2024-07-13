@@ -6,5 +6,5 @@ textgrid
 soundfile
 librosa
 spacy
-spicy
-
+pyarrow
+pandas
