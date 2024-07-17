@@ -1,6 +1,6 @@
 #git+https://github.com/openai/whisper.git
 numpy
-#torch
+torchaudio
 transformers
 textgrid
 soundfile

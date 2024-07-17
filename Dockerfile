@@ -26,6 +26,8 @@ RUN python -m spacy download en_core_web_sm
 
 RUN apt install screen -y
 
+RUN apt install ffmpeg -y
+
 # Create a directory for the app
 WORKDIR /app
 
