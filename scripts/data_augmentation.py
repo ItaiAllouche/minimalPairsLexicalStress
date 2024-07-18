@@ -23,7 +23,7 @@ def apply_lowpass(wav_path: str):
     effector = torchaudio.io.AudioEffector(effect=effect)
     return effector(waveform, sample_rate)
     
-# add noise to the speech waveform at 10 and 20 SNR levels.
+# add noise to the speech waveform at 10,20 and 3 SNR levels.
 def add_noisw_with_snr(wav_path: str):
     if not wav_path.endswith(".wav"):
         raise ValueError(f"the file: {wav_path} in not a .wav file")
@@ -37,10 +37,11 @@ def add_noisw_with_snr(wav_path: str):
     noise = noise[:, : speech.shape[1]]
 
     # define SNR values and apply noise
-    snr_dbs = torch.tensor([20, 10])
+    snr_dbs = torch.tensor([20, 10, 3])
     noisy_speeches = F.add_noise(speech, noise, snr_dbs)
 
     # separate noisy speeches for each SNR level
     noisy_speech_20db = noisy_speeches[0:1]
     noisy_speech_10db = noisy_speeches[1:2]
-    return noisy_speech_20db, noisy_speech_10db, sample_rate   
+    noisy_speech_3db = noisy_speeches[2:3]
+    return noisy_speech_20db, noisy_speech_10db, noisy_speech_3db, sample_rate   
