@@ -1,3 +1,10 @@
+"""
+This file contains two functions designed for augmenting audio data, particularly speech waveforms.
+These functions help enhance the robustness of machine learning models by applying common audio transformations. 
+The augmentations include applying a low-pass filter and adding noise to the speech waveform at various Signal-to-Noise Ratio (SNR) levels.
+"""
+
+
 import os
 from torchaudio.utils import download_asset
 import torch
@@ -21,7 +28,7 @@ def apply_lowpass(wav_path: str):
         ],
     )
     effector = torchaudio.io.AudioEffector(effect=effect)
-    return effector(waveform, sample_rate)
+    return effector.apply(waveform, sample_rate)
     
 # add noise to the speech waveform at 10,20 and 3 SNR levels.
 def add_noisw_with_snr(wav_path: str):
