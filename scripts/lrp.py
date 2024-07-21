@@ -9,7 +9,7 @@ import torch.nn as nn
 import numpy as np
 from captum.attr import LRP
 from captum.attr import visualization as viz
-from captum.attr._utils.lrp_rules import EpsilonRule, GammaRule, Alpha1_Beta0_Rule
+from captum.attr._utils.lrp_rules import EpsilonRule, IdentityRule, Alpha1_Beta0_Rule
 from src.GCommandsPytorch.gcommand_loader import spect_loader
 
 
@@ -27,14 +27,20 @@ def do_lrp(model: nn.Module, wav_path: str):
     layers = list(model._modules["features"])
     num_layers = len(layers)
 
-    # for idx_layer in range(1, num_layers):
-    #     if idx_layer <= 16:
-    #         setattr(layers[idx_layer], "rule", GammaRule())
-    #     else:
-    #         setattr(layers[idx_layer], "rule", EpsilonRule())
-            
-    # setattr(model._modules["fc1"], "rule", EpsilonRule(epsilon=0))
-    # setattr(model._modules["fc2"], "rule", EpsilonRule(epsilon=0))
+    # assign LRP rules to convolutional layers
+    for idx_layer in range(1, num_layers):
+        if isinstance(layers[idx_layer], nn.Conv2d):
+            if idx_layer <= 2:
+                # assign identityRule on conv layers near the input to preserve the activations as they are
+                setattr(layers[idx_layer], "rule", IdentityRule())
+            else:
+                # assign Alpha1_Beta0_Rule on conv layes near the output to propagates only positive relevance.
+                setattr(layers[idx_layer], "rule", Alpha1_Beta0_Rule())
+
+
+    # assign EpsilonRule on fc layers close the the output
+    setattr(model._modules["fc1"], "rule", EpsilonRule(epsilon=1e-6))
+    setattr(model._modules["fc2"], "rule", EpsilonRule(epsilon=1e-6))
     
     lrp = LRP(model)
 
