@@ -1,19 +1,31 @@
-"""
-This file contains two functions designed for augmenting audio data, particularly speech waveforms.
-These functions help enhance the robustness of machine learning models by applying common audio transformations. 
-The augmentations include applying a low-pass filter and adding noise to the speech waveform at various Signal-to-Noise Ratio (SNR) levels.
-"""
-
-
 import os
 from torchaudio.utils import download_asset
 import torch
 import torchaudio
 import torchaudio.functional as F
-from generate_dataset_from_TEDLIUM.generate_dataset import get_clapped_spectorgram, get_timestamps
 
-# returns new waveform after applying low-pass filter
 def apply_lowpass(wav_path: str):
+    r"""
+    Applies a low-pass filter to the input WAV file with a frequency threshold of 300 Hz.
+
+    This function takes the path of a WAV file as input, applies a low-pass filter with a 
+    frequency cutoff at 300 Hz using the SoX effect, and returns the filtered waveform.
+
+    Parameters:
+    -----------
+    wav_path : str
+        The file path to the input WAV file. The file must have a `.wav` extension.
+
+    Returns:
+    --------
+    torch.Tensor
+        The waveform after applying the low-pass filter.
+
+    Raises:
+    -------
+    ValueError
+        If the input file does not have a `.wav` extension.
+    """
     if not wav_path.endswith(".wav"):
         raise ValueError(f"the file: {wav_path} in not a .wav file")
     
@@ -21,21 +33,48 @@ def apply_lowpass(wav_path: str):
     waveform, sample_rate = torchaudio.load(sample_wav, channels_first=False)
     effect = ",".join(
         [
-        "lowpass=frequency=300:poles=1",  # apply single-pole lowpass filter
-        # "atempo=0.8",  # reduce the speed
-        # "aecho=in_gain=0.8:out_gain=0.9:delays=200:decays=0.3|decays=0.3"
-        # Applying echo gives some dramatic feeling
+        "lowpass=frequency=300:poles=1",
         ],
     )
     effector = torchaudio.io.AudioEffector(effect=effect)
     return effector.apply(waveform, sample_rate)
     
-# add noise to the speech waveform at 10,20 and 3 SNR levels.
+
 def add_noisw_with_snr(wav_path: str):
+    r"""
+        Adds noise to the input WAV file at different signal-to-noise ratio (SNR) levels.
+
+        This function takes the path of a WAV file as input and applies noise to the waveform
+        at three different SNR levels: 20 dB, 10 dB, and 3 dB. It returns the noisy waveforms
+        corresponding to each SNR level along with the sample rate.
+
+        Parameters:
+        -----------
+        wav_path : str
+            The file path to the input WAV file. The file must have a `.wav` extension.
+
+        Returns:
+        --------
+        tuple:
+            - torch.Tensor: The noisy waveform with 20 dB SNR.
+            - torch.Tensor: The noisy waveform with 10 dB SNR.
+            - torch.Tensor: The noisy waveform with 3 dB SNR.
+            - int: The sample rate of the original WAV file.
+        
+        Raises:
+        -------
+        ValueError
+            If the input file does not have a `.wav` extension.
+        FileNotFoundError
+            If the noise file does not exist.
+        """    
     if not wav_path.endswith(".wav"):
         raise ValueError(f"the file: {wav_path} in not a .wav file")
     
     noise_path = "./noise.wav"
+    if not os.path.exists(noise_path):
+        raise FileNotFoundError(f"The noise file: {noise_path} does not exist")
+
     sample_noise = download_asset(noise_path)
     noise, _ = torchaudio.load(sample_noise)
 
