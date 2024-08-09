@@ -14,7 +14,12 @@
 # mfa model download acoustic english_us_arpa
 # mfa model download dictionary english_us_arpa 
 
-cd ../datasets/train_100_clean || { echo "Error: ../datasets directory not found"; exit 1; }
+cd /app/new_datasets/librispeech/LibriSpeech_train_360/rearragne_train_clean_360 || { echo "Error: /app/new_datasets/librispeech/LibriSpeech_train_360/rearragne_train_clean_360 not found"; exit 1; }
+# cd /app/new_datasets/supreme_court_data/rearrange_w_wav || { echo "Error: /app/new_datasets/supreme_court_data/rearrange_w_wav not found"; exit 1; }
+
+# Count the number of directories to process
+total_dirs=$(find . -maxdepth 1 -type d | grep -v '^\.$' | grep -v "$(basename "$0")" | wc -l)
+processed_dirs=0
 
 GPU_DEVICE_ID=7
 
@@ -31,13 +36,17 @@ for dir in */; do
             if ! ls "$dir"/*.TextGrid 1> /dev/null 2>&1; then
                 # Run mfa align in each directory
                 echo "Processing directory: $dir_name"
-                mfa align --clean "$dir" english_us_arpa english_us_arpa "$dir" -gpu "$GPU_DEVICE_ID"
+                 # Display progress
+                echo -ne "Progress: $((processed_dirs * 100 / total_dirs))% ($processed_dirs/$total_dirs)\r"                
+                mfa align --clean "$dir" english_us_arpa english_us_arpa "$dir" -gpu "$GPU_DEVICE_ID" --beam 100 --retry_beam 400
             else
                 echo "Skipping directory $dir_name: .TextGrid file already exists"
             fi
+            processed_dirs=$((processed_dirs + 1))
+
         fi
     fi
 done
 
-conda deactivate
-conda deactivate
+# conda deactivate
+# conda deactivate
