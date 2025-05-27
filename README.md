@@ -47,11 +47,13 @@ contributions to the model’s predictions.*
   * [TheRepository Oganization](#Repository-Oganization)
   * [Installation](#Installation)
   * [Run Demo](#Run-Demo)
+  * * [TODO](#TODO)
 ## A reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
 ### Repository Oganization
 | File | Purpose |
 |---------|------------------|
 | [`examples/`](examples/) | Demo audio clips (`.wav`). `IS/` and `FS/` sub-folders |
+| [`checkpoints/`](checkpoints/) | Checkpoints of trained models (currently only VGG16 is supported) |
 | [`model.py`](model.py)   | VGG variants and ResNet-18 architectures (PyTorch) |
 | [`utils/lrp.py`](utils/lrp.py)           | Composite LRP rules implemented with **Captum** |
 | [`utils/loader.py`](utils/loader.py)           | Spectogram and Model loader methods |
@@ -72,4 +74,7 @@ pip install -r requirements.txt
 This commands create and activate a python virtual environment, and install all the relevant python dependencies.
 ### Run Demo
 Run the jupyter notebook `run_demo.ipynb` 
+
+### TODO
+Add ResNet architecture to this demo
 
