@@ -71,7 +71,7 @@ source lexicalStress/bin/activate     # Windows: lexicalStress\Scripts\activate
 install the required packages
 pip install -r requirements.txt
 ```
-This commands create and activate a python virtual environment, and install all the relevant python dependencies.
+This commands creates & activates a python virtual environment, and install all the relevant python dependencies.
 ### Run Demo
 Run the jupyter notebook `run_demo.ipynb` 
 
