@@ -19,10 +19,10 @@
   <h2 align="center">
   Offical repository of the paper
   </h2>
-  
----
 
-*Abstract: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
+* **What Does Lexical Stress Look Like?** *
+* Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt Goldrick and Yossi Keshet*
+* **Abstract**: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
 particularly in minimal pairs (e.g., PREsent vs. presENT ). The aim is to train a classifier
 for detecting the stressed syllable on a large amount of data, and understanding the acoustic
 features underlying its decisions. Disyllabic stress minimal word pairs and non-minimal word
@@ -38,6 +38,8 @@ key signal regions influencing classification. Additionally, acoustic features, 
 mental frequency and the first three formants, were extracted and analyzed to assess their
 contributions to the model’s predictions.*
 
+---
+
 *A reproducible demo of lexical-stress classification and LRP-based interpretation*
 
 This repository accompanies the JASA paper **“ What Does Lexical Stress Look Like?”**  
@@ -46,7 +48,7 @@ It contains everything you need to:
 1. **Classify** disyllabic English words as **initial-stress (IS)** or **final-stress (FS)** with a VGG-16 CNN.
 2. **Interpret** the model’s decisions via **Layer-wise Relevance Propagation (LRP)** heat-maps.
 
----
+
 
 ## Table of contents
 | File | Purpsoe |
