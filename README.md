@@ -41,6 +41,13 @@ mental frequency and the first three formants, were extracted and analyzed to as
 contributions to the model’s predictions.*
 
 ---
+
+- [What Does Lexical Stress Look Like?](#What-Does-Lexical-Stress-Look-Like?)
+- [A reproducible demo of lexical-stress classification and LRP-based interpretation](#A-reproducible-demo-of-lexical-stress-classification-and-LRP-based-interpretation)
+  * [TheRepository OganizationModel](#Repository-Oganization)
+  * [Installation](#Installation)
+  * [Run Demo](#Run-Demo)
+    + 
 ## A reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
 ### Repository Oganization
 | File | Purpose |
