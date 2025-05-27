@@ -47,7 +47,7 @@ contributions to the model’s predictions.*
   * [TheRepository Oganization](#Repository-Oganization)
   * [Installation](#Installation)
   * [Run Demo](#Run-Demo)
-  * * [TODO](#TODO)
+  * [TODO](#TODO)
 ## A reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
 ### Repository Oganization
 | File | Purpose |
