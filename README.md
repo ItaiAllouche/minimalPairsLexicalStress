@@ -2,7 +2,7 @@
 
 <h1 align="center">
   <br>
-[JASA] What Does Lexical Stress Look Like?: Minimal-pairs: Lexical-stress classification with LRP analysis
+[JASA] What Does Lexical Stress Look Like?: Minimal-Pairs Lexical-Stress Classification with LRP Analysis
   <br>
   <img src="https://github.com/ItaiAllouche/minimalPairsLexicalStress/blob/main/figs/spectogram_and_lrp_heatmaps.png" height="400">
 </h1>
