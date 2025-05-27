@@ -22,7 +22,7 @@
 
 ***What Does Lexical Stress Look Like?***
 
-*Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt Goldrick and Yossi Keshet*
+*Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt, Goldrick and Yossi Keshet*
 
 ***Abstract**: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
 particularly in minimal pairs (e.g., PREsent vs. presENT ). The aim is to train a classifier
