@@ -1,11 +1,5 @@
-fastapi
-uvicorn[standard]
-captum
-fastapi 
 torch
 torchvision
+captum
 librosa
-torch
 matplotlib
-# io
-fastapi
