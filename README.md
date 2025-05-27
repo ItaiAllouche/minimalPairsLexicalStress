@@ -13,7 +13,7 @@ It contains everything you need to:
 ## Table of contents
 | File | Purpsoe |
 |---------|------------------|
-| [`examples/`](examples/) | Demo audio clips (`.wav`) &mdash; `IS/` and `FS/` sub-folders |
+| [`examples/`](examples/) | Demo audio clips (`.wav`). `IS/` and `FS/` sub-folders |
 | [`model.py`](model.py)   | VGG variants and ResNet-18 architectures (PyTorch) |
 | [`utils/lrp.py`](utils/lrp.py)           | Composite LRP rules implemented with **Captum** |
 | [`utils/loader.py`](utils/loader.py)           | Spectogram and Model loader methods |
