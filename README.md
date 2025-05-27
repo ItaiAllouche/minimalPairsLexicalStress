@@ -17,8 +17,10 @@
   </p>
   
   <h2 align="center">
-  Offical repository of the paper
+  Official repository of the paper
   </h2>
+
+  **A reproducible demo of lexical-stress classification and LRP-based interpretation**
 
 ***What Does Lexical Stress Look Like?***
 
@@ -41,9 +43,6 @@ mental frequency and the first three formants, were extracted and analyzed to as
 contributions to the model’s predictions.*
 
 ---
-
-**A reproducible demo of lexical-stress classification and LRP-based interpretation**
-
 
 ## Repository Oganization
 | File | Purpose |
