@@ -15,7 +15,9 @@
     <a href="https://faculty.wcas.northwestern.edu/matt-goldrick/#!/">Matt Goldrick </a> •    
     <a href="https://il.linkedin.com/in/jkeshet">Yossi Keshet</a> •
   </p>
+  
 ---
+
 *Abstract: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
 particularly in minimal pairs (e.g., PREsent vs. presENT ). The aim is to train a classifier
 for detecting the stressed syllable on a large amount of data, and understanding the acoustic
