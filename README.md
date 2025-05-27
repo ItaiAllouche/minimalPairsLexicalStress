@@ -15,8 +15,9 @@ It contains everything you need to:
 |---------|------------------|
 | [`examples/`](examples/) | Demo audio clips (`.wav`) &mdash; `IS/` and `FS/` sub-folders |
 | [`model.py`](model.py)   | VGG variants and ResNet-18 architectures (PyTorch) |
-| [`lrp/`](lrp/)           | Composite LRP rules implemented with **Captum** |
-| [`run_demo.ipynb`](run_demo.ipynb) | One-click notebook: load model ▶ classify ▶ visualise LRP |
+| [`utils/lrp.py`](utils/lrp.py)           | Composite LRP rules implemented with **Captum** |
+| [`utils/loader.py`](utils/loader.py)           | Spectogram and Model loader methods |
+| [`run_demo.ipynb`](run_demo.ipynb) | One-click notebook: load model → classify → visualise LRP |
 | [`requirements.txt`](requirements.txt) |Python dependencies|
 
 ---
