@@ -58,7 +58,6 @@ contributions to the model’s predictions.*
 | [`run_demo.ipynb`](run_demo.ipynb) | One-click notebook: load model → classify → visualise LRP |
 | [`requirements.txt`](requirements.txt) |Python dependencies|
 
----
 
 ### Installation
 
