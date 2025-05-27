@@ -4,7 +4,7 @@
   <br>
 [JASA] What Does Lexical Stress Look Like?: Minimal-pairs: Lexical-stress classification with LRP analysis
   <br>
-  <img src="https://raw.githubusercontent.com/taldatech/ee046211-deep-learning/main/assets/nn_gumgum.gif" height="200">
+  <img src="https://github.com/ItaiAllouche/minimalPairsLexicalStress/blob/main/figs/spectogram_and_lrp_heatmaps.png" height="200">
 </h1>
   <p align="center">
     <a href="https://github.com/ItaiAllouche">Itai Allouche</a> •
