@@ -15,7 +15,9 @@
     <a href="https://faculty.wcas.northwestern.edu/matt-goldrick/#!/">Matt Goldrick </a> •    
     <a href="https://il.linkedin.com/in/jkeshet">Yossi Keshet</a> •
   </p>
-  
+  </h1 align="center">
+  Offical repository of the paper
+  </h1>
 ---
 
 *Abstract: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
