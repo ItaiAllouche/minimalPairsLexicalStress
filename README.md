@@ -1,5 +1,21 @@
 # What Does Lexical Stress Look Like?
 
+<h1 align="center">
+  <br>
+[JASA] What Does Lexical Stress Look Like?: Minimal-pairs: Lexical-stress classification with LRP analysis
+  <br>
+  <img src="https://raw.githubusercontent.com/taldatech/ee046211-deep-learning/main/assets/nn_gumgum.gif" height="200">
+</h1>
+  <p align="center">
+    <a href="https://github.com/ItaiAllouche">Itai Allouche</a> •
+    <a href="https://il.linkedin.com/in/itay-asael-37769322a?original_referer=https%3A%2F%2Fwww.google.com%2F">Itay Asael</a> •
+    <a href="https://il.linkedin.com/in/rotem-rousso-897444213">Rotem Rousso</a> •
+    <a href="https://il.linkedin.com/in/vered-dassa-202722185">Vered Dassa</a> •
+    <a href="https://www.linkedin.com/in/ann-bradlow-8344939">Ann Bradlow</a> •
+    <a href="https://faculty.wcas.northwestern.edu/matt-goldrick/#!/">Matt Goldrick </a> •    
+    <a href="https://il.linkedin.com/in/jkeshet">Yossi Keshet</a> •
+  </p>
+
 *A reproducible demo of lexical-stress classification and LRP-based interpretation*
 
 This repository accompanies the JASA paper **“ What Does Lexical Stress Look Like?”**  
