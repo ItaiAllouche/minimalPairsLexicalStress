@@ -7,7 +7,7 @@
   <img src="https://github.com/ItaiAllouche/minimalPairsLexicalStress/blob/main/figs/spectogram_and_lrp_heatmaps.png" height="400">
 </h1>
   <p align="center">
-    <a href="https://github.com/ItaiAllouche">Itai Allouche</a> •
+    <a href="https://www.linkedin.com/in/itai-allouche/">Itai Allouche</a> •
     <a href="https://il.linkedin.com/in/itay-asael-37769322a?original_referer=https%3A%2F%2Fwww.google.com%2F">Itay Asael</a> •
     <a href="https://il.linkedin.com/in/rotem-rousso-897444213">Rotem Rousso</a> •
     <a href="https://il.linkedin.com/in/vered-dassa-202722185">Vered Dassa</a> •
