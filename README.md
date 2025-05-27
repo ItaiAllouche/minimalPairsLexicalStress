@@ -16,6 +16,22 @@
     <a href="https://il.linkedin.com/in/jkeshet">Yossi Keshet</a> •
   </p>
 
+*Abstract: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
+particularly in minimal pairs (e.g., PREsent vs. presENT ). The aim is to train a classifier
+for detecting the stressed syllable on a large amount of data, and understanding the acoustic
+features underlying its decisions. Disyllabic stress minimal word pairs and non-minimal word
+pairs (e.g., WALlet vs. extEND) were extracted from multiple speech corpora using forced
+alignment. A part-of-speech tagging system was used to label each minimal pairs word as ei-
+ther a noun, which is associated with stress on the first syllable, or a verb, which is associated
+with stress on the last syllable. In non-minimal pairs, stress placement is unambiguous and
+consistently follows lexical conventions. Several Convolutional neural network (CNN) archi-
+tectures were trained using focal loss to mitigate class imbalance, with the best-performing
+model achieving a classification accuracy of 92%. To interpret model behavior, Layerwise
+Relevance Propagation (LRP) was applied, producing spectrogram heatmaps that highlight
+key signal regions influencing classification. Additionally, acoustic features, such as funda-
+mental frequency and the first three formants, were extracted and analyzed to assess their
+contributions to the model’s predictions.*
+
 *A reproducible demo of lexical-stress classification and LRP-based interpretation*
 
 This repository accompanies the JASA paper **“ What Does Lexical Stress Look Like?”**  
