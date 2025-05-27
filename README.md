@@ -20,8 +20,6 @@
   Official repository of the paper
   </h2>
 
-  **A reproducible demo of lexical-stress classification and LRP-based interpretation**
-
 ***What Does Lexical Stress Look Like?***
 
 *Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt Goldrick and Yossi Keshet*
@@ -43,8 +41,8 @@ mental frequency and the first three formants, were extracted and analyzed to as
 contributions to the model’s predictions.*
 
 ---
-
-## Repository Oganization
+## A reproducible demo of lexical-stress classification and LRP-based interpretation
+### Repository Oganization
 | File | Purpose |
 |---------|------------------|
 | [`examples/`](examples/) | Demo audio clips (`.wav`). `IS/` and `FS/` sub-folders |
@@ -56,7 +54,7 @@ contributions to the model’s predictions.*
 
 ---
 
-## Installation
+### Installation
 
 ```bash
 # 1 Create virtual environment (recommended)
@@ -67,6 +65,6 @@ source lexicalStress/bin/activate     # Windows: lexicalStress\Scripts\activate
 pip install -r requirements.txt
 ```
 This commands create and activate a python virtual environment, and install all the relevant python dependencies.
-## Run Demo
+### Run Demo
 Run the jupyter notebook `run_demo.ipynb` 
 
