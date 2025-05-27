@@ -15,7 +15,8 @@
     <a href="https://faculty.wcas.northwestern.edu/matt-goldrick/#!/">Matt Goldrick </a> •    
     <a href="https://il.linkedin.com/in/jkeshet">Yossi Keshet</a> •
   </p>
-  </h1 align="center">
+  
+  <h1 align="center">
   Offical repository of the paper
   </h1>
 ---
