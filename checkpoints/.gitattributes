@@ -1,0 +1,1 @@
+checkpoint_VGG16_adam_1e-05/ckpt.t7 filter=lfs diff=lfs merge=lfs -text
