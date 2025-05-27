@@ -41,7 +41,7 @@ mental frequency and the first three formants, were extracted and analyzed to as
 contributions to the model’s predictions.*
 
 ---
-## A reproducible demo of lexical-stress classification and LRP-based interpretation
+## A reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
 ### Repository Oganization
 | File | Purpose |
 |---------|------------------|
