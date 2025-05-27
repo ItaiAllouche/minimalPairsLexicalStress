@@ -42,7 +42,7 @@ contributions to the model’s predictions.*
 
 ---
 
-- [What Does Lexical Stress Look Like?](#What-Does-Lexical-Stress-Look-Like-?)
+- [What Does Lexical Stress Look Like?](#What-Does-Lexical-Stress-Look-Like\?)
 - [A reproducible demo of lexical-stress classification and LRP-based interpretation](#A-reproducible-demo-of-lexical-stress-classification-and-LRP-based-interpretation)
   * [TheRepository Oganization](#Repository-Oganization)
   * [Installation](#Installation)
