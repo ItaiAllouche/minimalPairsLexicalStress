@@ -42,18 +42,11 @@ contributions to the model’s predictions.*
 
 ---
 
-*A reproducible demo of lexical-stress classification and LRP-based interpretation*
-
-This repository accompanies the JASA paper **“ What Does Lexical Stress Look Like?”**  
-It contains everything you need to:
-
-1. **Classify** disyllabic English words as **initial-stress (IS)** or **final-stress (FS)** with a VGG-16 CNN.
-2. **Interpret** the model’s decisions via **Layer-wise Relevance Propagation (LRP)** heat-maps.
+**A reproducible demo of lexical-stress classification and LRP-based interpretation**
 
 
-
-## Table of contents
-| File | Purpsoe |
+## Repository Oganization
+| File | Purpose |
 |---------|------------------|
 | [`examples/`](examples/) | Demo audio clips (`.wav`). `IS/` and `FS/` sub-folders |
 | [`model.py`](model.py)   | VGG variants and ResNet-18 architectures (PyTorch) |
