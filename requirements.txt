@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+captum
+fastapi 
+torch
+torchvision
+librosa
+torch
+matplotlib
+# io
+fastapi
