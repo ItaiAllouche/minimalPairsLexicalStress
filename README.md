@@ -64,11 +64,11 @@ contributions to the model’s predictions.*
 ### Installation
 
 ```bash
-#create virtual environment (recommended)
+# create virtual environment (recommended)
 python -m venv lexicalStress
 source lexicalStress/bin/activate # windows: lexicalStress\Scripts\activate
 
-#install the required packages
+# install the required packages
 pip install -r requirements.txt
 ```
 This commands creates & activates a python virtual environment, and install all the relevant python dependencies.
