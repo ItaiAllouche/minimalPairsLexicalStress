@@ -29,16 +29,16 @@ particularly in minimal pairs (e.g., PREsent vs. presENT ). The aim is to train 
 for detecting the stressed syllable on a large amount of data, and understanding the acoustic
 features underlying its decisions. Disyllabic stress minimal word pairs and non-minimal word
 pairs (e.g., WALlet vs. extEND) were extracted from multiple speech corpora using forced
-alignment. A part-of-speech tagging system was used to label each minimal pairs word as ei-
-ther a noun, which is associated with stress on the first syllable, or a verb, which is associated
+alignment. A part-of-speech tagging system was used to label each minimal pairs word as either a noun,
+which is associated with stress on the first syllable, or a verb, which is associated
 with stress on the last syllable. In non-minimal pairs, stress placement is unambiguous and
-consistently follows lexical conventions. Several Convolutional neural network (CNN) archi-
-tectures were trained using focal loss to mitigate class imbalance, with the best-performing
+consistently follows lexical conventions. Several Convolutional neural network (CNN)
+architectures were trained using focal loss to mitigate class imbalance, with the best-performing
 model achieving a classification accuracy of 92%. To interpret model behavior, Layerwise
 Relevance Propagation (LRP) was applied, producing spectrogram heatmaps that highlight
-key signal regions influencing classification. Additionally, acoustic features, such as funda-
-mental frequency and the first three formants, were extracted and analyzed to assess their
-contributions to the model’s predictions.*
+key signal regions influencing classification. Additionally, acoustic features, such as 
+fundamental frequency and the first three formants, were extracted and analyzed to assess 
+their contributions to the model’s predictions.*
 
 ---
 
