@@ -48,7 +48,7 @@ their contributions to the model’s predictions.*
   * [Installation](#Installation)
   * [Run Demo](#Run-Demo)
   * [TODO](#TODO)
-## A reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
+## A Reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
 ### Repository Oganization
 | File | Purpose |
 |---------|------------------|
