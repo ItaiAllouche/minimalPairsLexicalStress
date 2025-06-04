@@ -1,8 +1,8 @@
-# What Does Lexical Stress Look Like?
+# How Does a Deep Neural Network Look at Lexical Stress??
 
 <h1 align="center">
   <br>
-[JASA] What Does Lexical Stress Look Like?: Minimal-Pairs Lexical-Stress Classification with LRP Analysis
+[JASA] How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-Stress Classification with LRP Analysis
   <br>
   <img src="https://github.com/ItaiAllouche/minimalPairsLexicalStress/blob/main/figs/spect_and_histmaps.png" height="370">
 </h1>
@@ -20,7 +20,7 @@
   Official repository of the paper
   </h2>
 
-***What Does Lexical Stress Look Like?***
+***How Does a Deep Neural Network Look at Lexical Stress?***
 
 *Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt, Goldrick and Yossi Keshet*
 
@@ -42,7 +42,7 @@ their contributions to the model’s predictions.*
 
 ---
 
-- [What Does Lexical Stress Look Like?](#What-Does-Lexical-Stress-Look-Like)
+- [How Does a Deep Neural Network Look at Lexical Stress?](#What-Does-Lexical-Stress-Look-Like)
 - [A reproducible demo of lexical-stress classification and LRP-based interpretation](#A-reproducible-demo-of-lexical-stress-classification-and-LRP-based-interpretation)
   * [TheRepository Oganization](#Repository-Oganization)
   * [Installation](#Installation)
