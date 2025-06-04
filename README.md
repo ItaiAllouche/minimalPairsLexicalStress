@@ -1,4 +1,4 @@
-# How Does a Deep Neural Network Look at Lexical Stress??
+# How Does a Deep Neural Network Look at Lexical Stress?
 
 <h1 align="center">
   <br>
