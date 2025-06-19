@@ -24,21 +24,21 @@
 
 *Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt, Goldrick and Yossi Keshet*
 
-***Abstract**: Lexical stress plays a crucial role in distinguishing word meanings and grammatical functions,
-particularly in minimal pairs (e.g., PREsent vs. presENT ). The aim is to train a classifier
-for detecting the stressed syllable on a large amount of data, and understanding the acoustic
-features underlying its decisions. Disyllabic stress minimal word pairs and non-minimal word
-pairs (e.g., WALlet vs. extEND) were extracted from multiple speech corpora using forced
-alignment. A part-of-speech tagging system was used to label each minimal pairs word as either a noun,
-which is associated with stress on the first syllable, or a verb, which is associated
-with stress on the last syllable. In non-minimal pairs, stress placement is unambiguous and
-consistently follows lexical conventions. Several Convolutional neural network (CNN)
-architectures were trained using focal loss to mitigate class imbalance, with the best-performing
-model achieving a classification accuracy of 92%. To interpret model behavior, Layerwise
-Relevance Propagation (LRP) was applied, producing spectrogram heatmaps that highlight
-key signal regions influencing classification. Additionally, acoustic features, such as 
-fundamental frequency and the first three formants, were extracted and analyzed to assess 
-their contributions to the model’s predictions.*
+***Abstract**: Deep learning architectures are highly impressive on many speech processing tasks; what
+underlies such improvements? This work examines this general issue in the context of lexical
+stress. A dataset of English disyllabic words was automatically constructed from read and
+spontaneous speech. Convolutional Neural Network (CNNs) were trained to predict stress
+position from a spectrographic representation of the acoustics of non-minimal pairs (initial
+WAllet vs. final exTEND), achieving up to 92% accuracy on held-out test data. Layerwise
+Relevance Propagation (LRP) analysis revealed that the CNNs’ predictions for held-out
+minimal pairs (PROtest vs. proTEST )) were most strongly influenced by information in
+stressed vs. unstressed syllables, in particular stressed vowels spectral properties. However,
+the classifiers also attended to information throughout the word. A feature-specific relevance
+analysis is proposed; its results suggest our best-performing classifier is strongly influenced
+by the stressed vowel’s first and second formant, with some evidence that its pitch and
+third formant contribute as well. These results reveal deep learning’s ability to acquire
+distributed cues to stress from naturally occurring data, extending traditional phonetic work
+based around highly controlled stimuli.*
 
 ---
 
