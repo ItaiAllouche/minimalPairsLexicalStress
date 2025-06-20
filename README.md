@@ -11,7 +11,7 @@ How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-St
     <a href="https://il.linkedin.com/in/itay-asael-37769322a?original_referer=https%3A%2F%2Fwww.google.com%2F">Itay Asael</a> •
     <a href="https://il.linkedin.com/in/rotem-rousso-897444213">Rotem Rousso</a> •
     <a href="https://il.linkedin.com/in/vered-dassa-202722185">Vered Dassa</a> •
-    <a href="https://www.linkedin.com/in/ann-bradlow-8344939">Ann Bradlow</a> •
+    <a href="https://faculty.wcas.northwestern.edu/ann-bradlow/">Ann Bradlow</a> •
     <a href="https://seungeun-kim.github.io/">Seung-Eun Kim</a> •
     <a href="https://faculty.wcas.northwestern.edu/matt-goldrick/#!/">Matt Goldrick </a> •    
     <a href="https://keshet.technion.ac.il">Yossi Keshet</a> •
