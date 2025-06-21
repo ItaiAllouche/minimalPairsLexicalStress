@@ -3,4 +3,5 @@ torchvision
 captum
 librosa
 matplotlib
-jupyter
+ipython
+ipykernel
