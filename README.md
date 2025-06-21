@@ -70,7 +70,7 @@ git clone https://github.com/ItaiAllouche/minimalPairsLexicalStress.git
 cd minimalPairsLexicalStress
 
 # create and activate virtual environment (recommended)
-python -m venv lexicalStress
+python3 -m venv lexicalStress
 source lexicalStress/bin/activate # windows: lexicalStress\Scripts\activate
 
 # install the required packages
