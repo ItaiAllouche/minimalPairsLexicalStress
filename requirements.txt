@@ -3,3 +3,4 @@ torchvision
 captum
 librosa
 matplotlib
+jupyter
