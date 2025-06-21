@@ -78,7 +78,7 @@ pip install -r requirements.txt
 ```
 This commands clones the project, creates & activates a python virtual environment, and install all the relevant python dependencies.
 ### Run Demo
-Run the jupyter notebook `run_demo.ipynb`. DONT FORGET to use the `lexicalStress` environment's interpeter
+Run the jupyter notebook `run_demo.ipynb`. DONT FORGET to use the `lexicalStress` environment's interpeter.
 
 ### TODO
 Add ResNet architecture to this demo
