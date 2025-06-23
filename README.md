@@ -74,7 +74,7 @@ python3 -m venv lexicalStress
 source lexicalStress/bin/activate # windows: lexicalStress\Scripts\activate
 
 # install the required packages
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 This commands clones the project, creates & activates a python virtual environment, and install all the relevant python dependencies.
 ### Run Demo
