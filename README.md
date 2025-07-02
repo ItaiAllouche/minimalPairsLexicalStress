@@ -4,7 +4,7 @@
   <br>
 How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-Stress Classification with LRP Analysis
   <br>
-  <img src="https://github.com/ItaiAllouche/minimalPairsLexicalStress/blob/main/figs/fig2.pdf" height="370">
+  <img src="https://github.com/ItaiAllouche/minimalPairsLexicalStress/blob/main/figs/fig.png" height="370">
 </h1>
   <p align="center">
     <a href="https://www.linkedin.com/in/itai-allouche/">Itai Allouche</a> •
