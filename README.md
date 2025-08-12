@@ -41,7 +41,7 @@ How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-St
 <h4 align="center">Preprint on ArXiv: <a href="https://arxiv.org/abs/2508.07229">2508.07229</a></h4>
 
 <div align="center" style="display: flex; justify-content: center; margin-top: 10px;">
-  <a href="https://arxiv.org/abs/2402.01831"><img src="https://img.shields.io/badge/arXiv-2402.01831-AD1C18" style="margin-right: 5px;"></a>
+  <a href="https://arxiv.org/abs/2508.07229"><img src="https://img.shields.io/badge/arXiv-2508.07229-b31b1b?style=flat&logo=arXiv&logoColor=white&labelColor=555555" style="margin-right: 5px;"></a>
 </div>
 
 ---
