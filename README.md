@@ -39,6 +39,7 @@ How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-St
 > occurring data, extending traditional phonetic work based around highly controlled stimuli.*
 
 <h4 align="center">Preprint on ArXiv: <a href="https://arxiv.org/abs/2508.07229">2508.07229</a></h4>
+
 ---
 
 - [How Does a Deep Neural Network Look at Lexical Stress?](#What-Does-Lexical-Stress-Look-Like)
