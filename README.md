@@ -37,7 +37,8 @@ throughout the word. A feature-specific relevance analysis is proposed, and its 
 and second formants, with some evidence that its pitch and third formant also contribute.
 These results reveal deep learning’s ability to acquire distributed cues to stress from naturally
 occurring data, extending traditional phonetic work based around highly controlled stimuli.*
-arXiv:[How Does a Deep Neural Network Look at Lexical Stress]("https://arxiv.org/abs/2508.07229")
+
+
 ---
 
 - [How Does a Deep Neural Network Look at Lexical Stress?](#What-Does-Lexical-Stress-Look-Like)
