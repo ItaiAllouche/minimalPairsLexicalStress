@@ -21,9 +21,9 @@ How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-St
   Official repository of the paper
   </h2>
 
-***How Does a Deep Neural Network Look at Lexical Stress?***
+> ***How Does a Deep Neural Network Look at Lexical Stress?***
 
-*Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt, Goldrick and Yossi Keshet*
+> *Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt, Goldrick and Yossi Keshet*
 
 > ***Abstract**: Despite their success in speech processing, neural networks often operate as black boxes,
 > prompting the question: what informs their decisions, and how can we interpret them? This
