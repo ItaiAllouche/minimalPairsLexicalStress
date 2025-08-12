@@ -32,11 +32,11 @@ words was automatically constructed from read and spontaneous speech. Several Co
 a spectrographic representation of disyllabic words lacking minimal stress pairs (e.g., initial stress WAllet, final stress exTEND), achieving up to 92% accuracy on held-out test
 data. Layerwise Relevance Propagation (LRP), a technique for CNN interpretability analysis, revealed that predictions for held-out minimal pairs (PROtest vs. proTEST ) were most
 strongly influenced by information in stressed versus unstressed syllables, particularly the
-spectral properties of stressed vowels. However, the classifiers also attended to information
-throughout the word. A feature-specific relevance analysis is proposed, and its results suggest that our best-performing classifier is strongly influenced by the stressed vowel’s first
-and second formants, with some evidence that its pitch and third formant also contribute.
-These results reveal deep learning’s ability to acquire distributed cues to stress from naturally
-occurring data, extending traditional phonetic work based around highly controlled stimuli.*
+> spectral properties of stressed vowels. However, the classifiers also attended to information
+> throughout the word. A feature-specific relevance analysis is proposed, and its results suggest that our best-performing classifier is strongly influenced by the stressed vowel’s first
+> and second formants, with some evidence that its pitch and third formant also contribute.
+> These results reveal deep learning’s ability to acquire distributed cues to stress from naturally
+> occurring data, extending traditional phonetic work based around highly controlled stimuli.*
 
 <h4 align="center">Preprint on ArXiv: <a href="https://arxiv.org/abs/2508.07229">2508.07229</a></h4>
 ---
