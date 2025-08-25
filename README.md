@@ -84,3 +84,12 @@ Run the jupyter notebook `run_demo.ipynb`. DONT FORGET to use the `lexicalStress
 ### TODO
 Add ResNet architecture to this demo
 
+### Citation
+>
+  @article{allouche2025does,
+    title={How Does a Deep Neural Network Look at Lexical Stress?},
+    author={Allouche, Itai and Asael, Itay and Rousso, Rotem and Dassa, Vered and Bradlow, Ann and Kim, Seung-Eun and Goldrick, Matthew and Keshet, Joseph},
+    journal={arXiv preprint arXiv:2508.07229},
+    year={2025}
+  }
+
