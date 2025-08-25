@@ -88,13 +88,11 @@ Add ResNet architecture to this demo
 
 Daniel, Tal, and Aviv Tamar. "DDLP: Unsupervised Object-centric Video Prediction with Deep Dynamic Latent Particles." Transactions on Machine Learning Research (TMLR) 2835-8856 (2024).
 
-    @article{
-		daniel2024ddlp,
-		title={DDLP: Unsupervised Object-centric Video Prediction with Deep Dynamic Latent Particles},
-		author={Tal Daniel and Aviv Tamar},
-		journal={Transactions on Machine Learning Research},
-		issn={2835-8856},
-		year={2024},
-		url={https://openreview.net/forum?id=Wqn8zirthg},
+	@article{
+	  allouche2025does,
+	  title={How Does a Deep Neural Network Look at Lexical Stress?},
+	  author={Allouche, Itai and Asael, Itay and Rousso, Rotem and Dassa, Vered and Bradlow, Ann and Kim, Seung-Eun and Goldrick, Matthew and Keshet, Joseph},
+	  journal={arXiv preprint arXiv:2508.07229},
+	  year={2025}
 		}
 
