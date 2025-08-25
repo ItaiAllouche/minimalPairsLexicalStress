@@ -50,6 +50,7 @@ How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-St
   * [Installation](#Installation)
   * [Run Demo](#Run-Demo)
   * [TODO](#TODO)
+  * [Citation](#Citation)
 ## A Reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
 ### Repository Oganization
 | File | Purpose |
