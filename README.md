@@ -84,7 +84,7 @@ Run the jupyter notebook `run_demo.ipynb`. DONT FORGET to use the `lexicalStress
 ### TODO
 Add ResNet architecture to this demo
 
-## Citation
+### Citation
 
 	@article{
 	  allouche2025does,
