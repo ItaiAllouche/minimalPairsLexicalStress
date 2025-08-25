@@ -86,8 +86,6 @@ Add ResNet architecture to this demo
 
 ## Citation
 
-Daniel, Tal, and Aviv Tamar. "DDLP: Unsupervised Object-centric Video Prediction with Deep Dynamic Latent Particles." Transactions on Machine Learning Research (TMLR) 2835-8856 (2024).
-
 	@article{
 	  allouche2025does,
 	  title={How Does a Deep Neural Network Look at Lexical Stress?},
