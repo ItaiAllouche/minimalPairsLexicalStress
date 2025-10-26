@@ -49,6 +49,7 @@ How Does a Deep Neural Network Look at Lexical Stress?: Minimal-Pairs Lexical-St
   * [TheRepository Oganization](#Repository-Oganization)
   * [Installation](#Installation)
   * [Run Demo](#Run-Demo)
+  * [Dataset](#Dataset)
   * [TODO](#TODO)
   * [Citation](#Citation)
 ## A Reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
@@ -82,13 +83,13 @@ This commands clones the project, creates & activates a python virtual environme
 ### Run Demo
 Run the jupyter notebook `run_demo.ipynb`. DONT FORGET to use the `lexicalStress` environment's interpeter.
 
-### TODO
-Add ResNet architecture to this demo
-
 ### Dataset
 
 We publicly released the **Lexical Stress Dataset** on [![Hugging Face Dataset](https://img.shields.io/badge/🤗%20Dataset-Lexical%20Stress-blue.svg?style=flat&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/MLSpeech/lexical_stress_dataset).
 The dataset includes automatically extracted disyllabic English words from LibriSpeech, Supreme Court, and TED-LIUM speech corpora, balanced across initial-stress (IS) and final-stress (FS) categories. It comprises train, valid, and test_no_minimal_pairs splits containing no minimal pair words (e.g., WAllet vs. exTEND), as well as a separate test_minimal_pairs set containing minimal pair words (e.g., PROtest vs. proTEST).
+
+### TODO
+Add ResNet architecture to this demo
 
 ### Citation
 
