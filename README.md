@@ -104,6 +104,7 @@ tar -xvf train/IS_tar/train_IS_01.tar -C train/IS_wav/
 # Example: extract all FS files from the training split
 mkdir -p train/FS_wav
 tar -xvf train/FS_tar/train_FS_01.tar -C train/FS_wav/
+```
 
 ### TODO
 Add ResNet architecture to this demo
