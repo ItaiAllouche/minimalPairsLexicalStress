@@ -96,14 +96,38 @@ All audio samples are stored as `.wav` files inside these archives for efficient
 
 To extract the `.tar` archives, use the following command-line example:
 
-```bash
-# Example: extract all IS files from the training split
-mkdir -p train/IS_wav
-tar -xvf train/IS_tar/train_IS_01.tar -C train/IS_wav/
+```python
+import os
+import tarfile
 
-# Example: extract all FS files from the training split
-mkdir -p train/FS_wav
-tar -xvf train/FS_tar/train_FS_01.tar -C train/FS_wav/
+# Path to the root directory of the downloaded dataset
+# e.g., if you cloned or downloaded from:
+# https://huggingface.co/datasets/MLSpeech/lexical_stress_dataset/tree/main
+# and you're running this script in that folder, you can leave it as "."
+DATASET_ROOT = "."
+
+for dirpath, dirnames, filenames in os.walk(DATASET_ROOT):
+    tar_files = [f for f in filenames if f.endswith(".tar")]
+    if not tar_files:
+        continue
+
+    # Decide where to extract:
+    # - If directory ends with "_tar" (e.g. train/IS_tar) → use parallel "_wav" dir (train/IS_wav)
+    # - Otherwise → extract into "extracted_wav" subfolder
+    if dirpath.endswith("_tar"):
+        extract_dir = dirpath[:-4] + "_wav"  # replace "..._tar" with "..._wav"
+    else:
+        extract_dir = os.path.join(dirpath, "extracted_wav")
+
+    os.makedirs(extract_dir, exist_ok=True)
+
+    for tar_name in tar_files:
+        tar_path = os.path.join(dirpath, tar_name)
+        print(f"Extracting {tar_path} -> {extract_dir}")
+        with tarfile.open(tar_path, "r") as tar:
+            tar.extractall(path=extract_dir)
+
+print("Done extracting all .tar archives.")
 ```
 
 ### TODO
