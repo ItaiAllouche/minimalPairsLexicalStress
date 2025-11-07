@@ -94,6 +94,17 @@ Each dataset split directory (e.g., `train/`, `valid/`, `test_minimal_pairs/`) c
 
 All audio samples are stored as `.wav` files inside these archives for efficient download and storage.
 
+To extract the `.tar` archives, use the following command-line example:
+
+```bash
+# Example: extract all IS files from the training split
+mkdir -p train/IS_wav
+tar -xvf train/IS_tar/train_IS_01.tar -C train/IS_wav/
+
+# Example: extract all FS files from the training split
+mkdir -p train/FS_wav
+tar -xvf train/FS_tar/train_FS_01.tar -C train/FS_wav/
+
 ### TODO
 Add ResNet architecture to this demo
 
