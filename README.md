@@ -85,7 +85,7 @@ Run the jupyter notebook `run_demo.ipynb`. DONT FORGET to use the `lexicalStress
 
 ### Dataset
 
-We publicly released the **Lexical Stress Dataset** on [![Hugging Face Dataset](https://img.shields.io/badge/🤗%20Dataset-Lexical%20Stress-blue.svg?style=flat&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/MLSpeech/lexical_stress_dataset).
+We publicly released the **Lexical Stress Dataset** on HF: [![Hugging Face Dataset](https://img.shields.io/badge/🤗%20Dataset-Lexical%20Stress-blue.svg?style=flat&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/MLSpeech/lexical_stress_dataset).
 The dataset includes automatically extracted disyllabic English words from LibriSpeech, Supreme Court, and TED-LIUM speech corpora, balanced across initial-stress (IS) and final-stress (FS) categories. It comprises train, valid, and test_no_minimal_pairs splits containing no minimal pair words (e.g., WAllet vs. exTEND), as well as a separate test_minimal_pairs set containing minimal pair words (e.g., PROtest vs. proTEST).
 
 Each dataset split directory (e.g., `train/`, `valid/`, `test_minimal_pairs/`) contains **two subdirectories**:
