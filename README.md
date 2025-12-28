@@ -44,7 +44,6 @@ How Does a Deep Neural Network Look at Lexical Stress in Disyllabic English Word
 
 ---
 
-- [How Does a Deep Neural Network Look at Lexical Stress in Disyllabic English Words?](#What-Does-Lexical-Stress-Look-Like)
 - [A reproducible demo of lexical-stress classification and LRP-based interpretation](#A-reproducible-demo-of-lexical-stress-classification-and-LRP-based-interpretation)
   * [Repository Oganization](#Repository-Oganization)
   * [Installation](#Installation)
