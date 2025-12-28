@@ -45,14 +45,14 @@ Minimal-Pairs Lexical-Stress Classification with LRP Analysis
 ---
 
 - [A reproducible demo of lexical-stress classification and LRP-based interpretation](#A-reproducible-demo-of-lexical-stress-classification-and-LRP-based-interpretation)
-  * [Repository Oganization](#Repository-Oganization)
+  * [Repository Organization](#Repository-Organization)
   * [Installation](#Installation)
   * [Run Demo](#Run-Demo)
   * [Dataset](#Dataset)
   * [TODO](#TODO)
   * [Citation](#Citation)
 ## A Reproducible Demo Of Lexical Stress Classification and LRP-based Interpretation
-### Repository Oganization
+### Repository Organization
 | File | Purpose |
 |---------|------------------|
 | [`examples/`](examples/) | Demo audio clips (`.wav`). `IS/` and `FS/` sub-folders |
