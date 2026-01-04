@@ -1,4 +1,4 @@
-# How Does a Deep Neural Network Look at Lexical Stress?
+# How Does a Deep Neural Network Look at Lexical Stress in English Words?
 
 <h1 align="center">
   <br>
@@ -21,7 +21,7 @@ Minimal-Pairs Lexical-Stress Classification with LRP Analysis
   Official repository of the paper
   </h2>
 
-> ***How Does a Deep Neural Network Look at Lexical Stress?***
+> ***How Does a Deep Neural Network Look at Lexical Stress in English Words?***
 
 > *Itai Allouche, Itay Asael, Rotem Rousso, Vered Dassa, Ann Bradlow Matt, Goldrick and Yossi Keshet*
 
