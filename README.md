@@ -100,7 +100,7 @@ Add ResNet architecture to this demo
 
 	@article{
 	  allouche2025does,
-	  title={How Does a Deep Neural Network Look at Lexical Stress?},
+	  title={How Does a Deep Neural Network Look at Lexical Stress in English Words?},
 	  author={Allouche, Itai and Asael, Itay and Rousso, Rotem and Dassa, Vered and Bradlow, Ann and Kim, Seung-Eun and Goldrick, Matthew and Keshet, Joseph},
 	  journal={arXiv preprint arXiv:2508.07229},
 	  year={2025}
