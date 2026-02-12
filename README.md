@@ -30,7 +30,7 @@ Minimal-Pairs Lexical-Stress Classification with LRP Analysis
 > work examines this issue in the context of lexical stress. A dataset of English disyllabic
 > words was automatically constructed from read and spontaneous speech. Several Convolutional Neural Network (CNN) architectures were trained to predict stress position from
 > a spectrographic representation of disyllabic words lacking minimal stress pairs (e.g., initial stress WAllet, final stress exTEND), achieving up to 92% accuracy on held-out test
-> data. Layerwise Relevance Propagation (LRP), a technique for CNN interpretability analysis, revealed that predictions for held-out minimal pairs (PROtest vs. proTEST ) were most
+> data. Layerwise Relevance Propagation (LRP), a technique for neural network interpretability analysis, revealed that predictions for held-out minimal pairs (PROtest vs. proTEST ) were most
 > strongly influenced by information in stressed versus unstressed syllables, particularly the
 > spectral properties of stressed vowels. However, the classifiers also attended to information
 > throughout the word. A feature-specific relevance analysis is proposed, and its results suggest that our best-performing classifier is strongly influenced by the stressed vowel’s first
