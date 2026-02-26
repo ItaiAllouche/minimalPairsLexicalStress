@@ -1,4 +1,4 @@
-# How Does a Deep Neural Network Look at Lexical Stress in English Words?
+# [JASA, Vol. 159, Issue 2] How Does a Deep Neural Network Look at Lexical Stress in English Words?
 
 <h1 align="center">
   <br>
