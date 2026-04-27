@@ -97,12 +97,14 @@ All audio samples are stored as `.wav` files inside these archives for efficient
 Add ResNet architecture to this demo
 
 ### Citation
-
-	@article{
-	  allouche2025does,
-	  title={How Does a Deep Neural Network Look at Lexical Stress in English Words?},
+	
+	@article{allouche2026does,
+	  title={How does a deep neural network look at lexical stress in English words?},
 	  author={Allouche, Itai and Asael, Itay and Rousso, Rotem and Dassa, Vered and Bradlow, Ann and Kim, Seung-Eun and Goldrick, Matthew and Keshet, Joseph},
-	  journal={arXiv preprint arXiv:2508.07229},
-	  year={2025}
+	  journal={The Journal of the Acoustical Society of America},
+	  volume={159},
+	  number={2},
+	  pages={1348--1358},
+	  year={2026},
+	  publisher={AIP Publishing}
 	}
-
